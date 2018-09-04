@@ -1,72 +1,80 @@
 object gimenez {
-	// la linea que sigue es equivalente a todo lo que está debajo.
-	// le agrega al objeto: un atributo, el método para acceder, y el método para modificar.
-//	var property sueldo = 15000
 
-	var sueldo = 15000
-	var sueldoTotal = 1500
-	method sueldo() { return 15000 }
-	method sueldo(nuevoValor) { sueldo = nuevoValor }
-	
+	var property sueldo = 15000
+	var sueldoCobrado = 0
+
 	method totalCobrado() {
-		sueldoTotal += self.sueldo()
-		return sueldoTotal
+		return sueldoCobrado
 	}
-	method cobrarSueldo(){
-	      self.totalCobrado()
+
+	method cobrarSueldo() {
+		sueldoCobrado += sueldo
 	}
+
 }
 
 object baigorria {
-	var cantidadEmpanadasVendidas = 100
+
+	var cantidadEmpanadasVendidas = 1000
 	var montoPorEmpanada = 15
-	var sueldo = 0
-	var deuda = 0
-	var dinero = 0
-	
-	
-	method gastar (cantidad){
-		if (cantidad > dinero) {
-			deuda += cantidad
-		}
-		dinero -= cantidad
-		if (cantidad > dinero) {
-			deuda += cantidad
-		}
-	}
-	
-	method totalDeuda()
-		{
-		
-		}
-	
-	method totalDinero()
-		{
-		
-		}
-		
+	var property deuda = 0
+	var property dinero = 0
+
 	method venderEmpanada() {
-		cantidadEmpanadasVendidas +=1
-	   }
-	   
-	method sueldo() = cantidadEmpanadasVendidas * montoPorEmpanada
-	
-	method cobrarSueldo(){
-		sueldo += self.sueldo()
-		sueldo -= deuda
+		cantidadEmpanadasVendidas += 1
 	}
+
+	method sueldo() = cantidadEmpanadasVendidas * montoPorEmpanada
+
+	method totalCobrado() {
+		dinero += self.sueldo()
+		return dinero
+	}
+
+	method gastar(unDinero) {
+		if (dinero < unDinero) {
+			deuda += unDinero - dinero
+			dinero = 0
+		} else {
+			dinero -= unDinero
+		}
+	}
+
+	method totalDinero() {
+		if (dinero > 0) {
+			return dinero
+		} else return 0
+	}
+
+	method totalDeuda() {
+		return deuda
+	}
+
+	method pagarDeuda() {
+		if (self.totalDeuda() > dinero) {
+			deuda -= dinero
+			dinero = 0
+		} else {
+			dinero -= deuda
+			deuda = 0
+		}
+	}
+
 }
 
 object galvan {
-	var dinero = 300000
-	method dinero() { return dinero }
-	//method pagarA( empleado ) { dinero -= empleado.sueldo() }
+
+	var property dinero = 300000
+
 	method pagarA(empleado) {
-    dinero -= empleado.sueldo()
-    empleado.cobrarSueldo()
-    
+		dinero -= empleado.sueldo()
+	}
+
+}
+
+
+	//method pagarA( empleado ) { dinero -= empleado.sueldo() }
+
     //1. Cuando Galvan le paga a cualquier empleado, el programa se rompe porque los emplados no conocen
     // el metodo cobrarSueldo.
     //2. Para solucionar esto habría que crear este metodo cobrarSueldo() en los emplados, para que el programa lo entienda
-}
-}
