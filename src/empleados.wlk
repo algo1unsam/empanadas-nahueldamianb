@@ -26,6 +26,9 @@ object baigorria {
 
 	method sueldo() = cantidadEmpanadasVendidas * montoPorEmpanada
 
+	// ojo, es un método de órden o de consulta?
+	// si es de consulta no debería hacer mucho... si es de órden, no debería mostrar nada
+	// igual está bien lo cuento por si genera confusión
 	method totalCobrado() {
 		dinero += self.sueldo()
 		return dinero
@@ -40,6 +43,9 @@ object baigorria {
 		}
 	}
 
+	// con hacer return dinero no alcanza??
+	// el if por qué? no vale el valor guardado así como está?
+	// si dinero está en 0, devuelve 0
 	method totalDinero() {
 		if (dinero > 0) {
 			return dinero

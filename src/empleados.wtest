@@ -1,6 +1,7 @@
 import empleados.*
 
-
+// hacer mas teste, en lugar de un solo test que pruebe todo
+// la idea del unit test, es que sea unitario, que testee una sola cosa por separado del resto
 test "Manejo fino de las finanzas de Baigorria" {
 	galvan.pagarA(gimenez)
 	gimenez.cobrarSueldo()
